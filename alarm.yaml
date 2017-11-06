@@ -1,0 +1,38 @@
+#not used
+envisalink:
+  host: 192.168.1.22
+  panel_type: DSC
+  user_name: user
+  password: user
+  code: '0429'
+  port: 4025
+  evl_version: 3
+  keepalive_interval: 60
+  zonedump_interval: 30
+  panic_type: Police
+  zones:
+    1:
+      name: 'Front Door'
+      type: 'opening'
+    2:
+      name: 'Sliding Door'
+      type: 'opening'
+    4:
+      name: 'Back Door'
+      type: 'opening'
+    5:
+      name: 'Basement Door'
+      type: 'opening'
+    6:
+      name: 'Family Motion'
+      type: 'motion'
+    7:
+      name: 'Entrance Motion'
+      type: 'motion'
+    15:
+      name: 'Basement Motion'
+      type: 'motion'
+  partitions:
+    1:
+      name: 'Home Alarm'
+

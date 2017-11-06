@@ -1,0 +1,9 @@
+binary_sensor.basement_md_30: {}
+configurator.nest:
+  fields:
+  - id: pin
+    name: 2R24Q8UJ
+    type: ''
+  link_url: https://home.nest.com/login/oauth2?client_id=dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca&state=a96d869156f413c1ee2c5d2fae4eef3d
+binary_sensor.upstairs_thermostat_online:
+  hidden: true
