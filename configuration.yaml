@@ -13,8 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-introduction:
+influxdb:
+  host: 127.0.0.1
 
 # Enables the frontend
 frontend:
@@ -77,7 +77,7 @@ mqtt:
 
 zwave:
     usb_path: /dev/ttyACM0
-#    network_key: "0x45, 0xF9, 0x78, 0x9E, 0x0D, 0x4C, 0x29, 0x88, 0x21, 0x9C, 0xF2, 0xA5, 0xC4, 0xDD, 0xF6, 0xDB"
+    network_key: "0x45, 0xF9, 0x78, 0x9E, 0x0D, 0x4C, 0x29, 0x88, 0x21, 0x9C, 0xF2, 0xA5, 0xC4, 0xDD, 0xF6, 0xDB"
     
 climate:
   - platform: mqtt
@@ -102,6 +102,45 @@ climate:
 nest:
   client_id: dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca
   client_secret: Ydo15n8gGoSnUEWtxbmKuBTWN
+
+envisalink:
+  host: 192.168.1.22
+  panel_type: DSC
+  user_name: user
+  password: user
+  code: '0429'
+  port: 4025
+  evl_version: 3
+  keepalive_interval: 60
+  zonedump_interval: 30
+  panic_type: Police
+  zones:
+    1:
+      name: 'Front Door'
+      type: 'opening'
+    2:
+      name: 'Sliding Door'
+      type: 'opening'
+    4:
+      name: 'Back Door'
+      type: 'opening'
+    5:
+      name: 'Basement Door'
+      type: 'opening'
+    6:
+      name: 'Family Motion'
+      type: 'motion'
+    7:
+      name: 'Entrance Motion'
+      type: 'motion'
+    15:
+      name: 'Basement Motion'
+      type: 'motion'
+  partitions:
+    1:
+      name: 'Home Alarm'
+
+
 
 #vera:
 #  vera_controller_url: http://192.168.1.4:3480/

@@ -7,3 +7,19 @@ configurator.nest:
   link_url: https://home.nest.com/login/oauth2?client_id=dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca&state=a96d869156f413c1ee2c5d2fae4eef3d
 binary_sensor.upstairs_thermostat_online:
   hidden: true
+zwave._:
+  hidden: true
+switch.switch:
+  friendly_name: Front Porch Light
+zwave.aeotec_zw090_zstick_gen5_us:
+  hidden: true
+binary_sensor.living_room_thermostat_is_locked:
+  hidden: true
+switch.leviton_vrs151lz_binary_scene_switch_switch:
+  friendly_name: Front Porch Light
+binary_sensor.living_room_thermostat_online:
+  hidden: true
+binary_sensor.upstairs_thermostat_is_using_emergency_heat:
+  hidden: true
+binary_sensor.upstairs_thermostat_is_locked:
+  hidden: true
