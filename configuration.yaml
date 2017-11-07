@@ -23,6 +23,8 @@ influxdb:
       - binary_sensor.entrance_motion
       - sensor.living_room_thermostat_temperature
       - binary_sensor.front_door
+      - climate.wine_room_temp
+      - climate.fin_temps
 
 # Enables the frontend
 frontend:
@@ -72,6 +74,10 @@ sensor:
     sensors:
       entrancemd_tripped:
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.entrance_motion.last_changed))/60) | round (0)}}'
+      familymd_tripped:
+        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.family_motion.last_changed))/60) | round (0)}}'
+      basementmd_tripped:
+        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.basement_motion.last_changed))/60) | round (0)}}'
 
 # Text to speech
 tts:
@@ -106,6 +112,7 @@ climate:
     fan_modes:
   - platform: mqtt
     initial: 32
+    target_temp_low: 0 
     name: "Fin Temps"
     temperature_command_topic: "myhome/wine/setfinmintemp"
     temperature_state_topic: "ha/wine/finMinTemp"
@@ -116,6 +123,13 @@ climate:
       - "Normal"
     swing_modes:
     fan_modes:
+
+camera:
+  - platform: mjpeg 
+    ip: 192.168.1.11
+    username: guest
+    password: !secret porchcam_password
+    mjpeg_url: http://192.168.1.11/videostream.cgi?user=guest&pwd=guest
 
 nest:
   client_id: dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca

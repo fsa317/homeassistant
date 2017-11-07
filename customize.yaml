@@ -52,3 +52,17 @@ sensor.entrancemd_tripped:
   friendly_name: Entrance MD - Last Movement (min)
 climate.wine_room_temp:
   icon: mdi:glass-tulip
+climate.fin_temps:
+  min_temp: '30'
+sensor.schlage_be469nxcen_touchscreen_deadbolt_power_management:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_system:
+  hidden: true
+sensor.kwikset_touchpad_electronic_deadbolt_alarm_level:
+  hidden: true
+sensor.kwikset_touchpad_electronic_deadbolt_alarm_type:
+  hidden: true
+sensor.basementmd_tripped:
+  friendly_name: Basement - Last Motion (Min)
+sensor.familymd_tripped:
+  friendly_name: Family Room - Last Motion (Min)
