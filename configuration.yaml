@@ -100,8 +100,10 @@ climate:
     current_temperature_topic: "ha/wine/Room Temp"
     mode_state_topic: "ha/wine/Cooling" 
     modes:
-      - Cooling
-      - Off
+      - "Cooling"
+      - "Off"
+    swing_modes:
+    fan_modes:
   - platform: mqtt
     initial: 32
     name: "Fin Temps"
@@ -109,11 +111,9 @@ climate:
     temperature_state_topic: "ha/wine/finMinTemp"
     current_temperature_topic: "ha/wine/Fin Temp"
     mode_state_topic: "ha/wine/Defrosting" 
-    payload_on: "1"
-    payload_off: "0"
     modes:
-      - Defrosting
-      - Off
+      - "Defrosting"
+      - "Normal"
     swing_modes:
     fan_modes:
 

@@ -50,3 +50,5 @@ sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level:
   hidden: true
 sensor.entrancemd_tripped:
   friendly_name: Entrance MD - Last Movement (min)
+climate.wine_room_temp:
+  icon: mdi:glass-tulip
