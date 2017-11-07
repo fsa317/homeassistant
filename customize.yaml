@@ -23,3 +23,30 @@ binary_sensor.upstairs_thermostat_is_using_emergency_heat:
   hidden: true
 binary_sensor.upstairs_thermostat_is_locked:
   hidden: true
+switch.leviton_vrs151lz_binary_scene_switch_switch_2:
+  friendly_name: Entrance Room Lights
+binary_sensor.living_room_thermostat_has_leaf:
+  hidden: true
+binary_sensor.living_room_thermostat_fan:
+  hidden: true
+binary_sensor.living_room_thermostat_is_using_emergency_heat:
+  hidden: true
+binary_sensor.upstairs_thermostat_has_leaf:
+  hidden: true
+binary_sensor.upstairs_thermostat_fan:
+  hidden: true
+light.leviton_vri061lx_multilevel_scene_switch_level:
+  friendly_name: Family Room Dimmer
+zwave.leviton_vri061lx_multilevel_scene_switch: {}
+sensor.schlage_be469nxcen_touchscreen_deadbolt_burglar:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_sourcenodeid:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level:
+  hidden: true
+sensor.entrancemd_tripped:
+  friendly_name: Entrance MD - Last Movement (min)

@@ -15,6 +15,14 @@ homeassistant:
 
 influxdb:
   host: 127.0.0.1
+  username: home-assistant
+  password: hapass
+  database: home_assistant
+  include:
+    entities:
+      - binary_sensor.entrance_motion
+      - sensor.living_room_thermostat_temperature
+      - binary_sensor.front_door
 
 # Enables the frontend
 frontend:
@@ -60,6 +68,10 @@ sensor:
   - platform: yr
   - platform: dnsip
     name: "MyIP"
+  - platform: template
+    sensors:
+      entrancemd_tripped:
+        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.entrance_motion.last_changed))/60) | round (0)}}'
 
 # Text to speech
 tts:
@@ -86,16 +98,22 @@ climate:
     temperature_command_topic: "myhome/wine/setdesiredtemp"
     temperature_state_topic: "ha/wine/DesiredTemp"
     current_temperature_topic: "ha/wine/Room Temp"
+    mode_state_topic: "ha/wine/Cooling" 
     modes:
-    swing_modes:
-    fan_modes:
+      - Cooling
+      - Off
   - platform: mqtt
     initial: 32
     name: "Fin Temps"
     temperature_command_topic: "myhome/wine/setfinmintemp"
     temperature_state_topic: "ha/wine/finMinTemp"
     current_temperature_topic: "ha/wine/Fin Temp"
+    mode_state_topic: "ha/wine/Defrosting" 
+    payload_on: "1"
+    payload_off: "0"
     modes:
+      - Defrosting
+      - Off
     swing_modes:
     fan_modes:
 
