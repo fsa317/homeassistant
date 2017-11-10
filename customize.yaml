@@ -53,6 +53,7 @@ sensor.entrancemd_tripped:
 climate.wine_room_temp:
   icon: mdi:glass-tulip
 climate.fin_temps:
+  icon: mdi:glass-tulip
   min_temp: '30'
 sensor.schlage_be469nxcen_touchscreen_deadbolt_power_management:
   hidden: true
@@ -66,3 +67,14 @@ sensor.basementmd_tripped:
   friendly_name: Basement - Last Motion (Min)
 sensor.familymd_tripped:
   friendly_name: Family Room - Last Motion (Min)
+sensor.frontdoor_tripped:
+  friendly_name: Front Door Last Opened (mins)
+group.all_automations: {}
+device_tracker.frank_samsung:
+  friendly_name: Frank
+configurator.plex_media_server:
+  hidden: true
+media_player.samsung_8_series_55_un55ks8500:
+  hidden: true
+media_player.samsung_led55_un55f6350:
+  hidden: true

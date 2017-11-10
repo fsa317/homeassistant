@@ -1,0 +1,73 @@
+home_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+      - updater.updater
+      - sun.sun
+      - sensor.yr_symbol
+      - sensor.entrancemd_tripped
+      - sensor.frontdoor_tripped
+      - sensor.familymd_tripped
+      - sensor.basementmd_tripped
+      - group.firstfloor_thermo
+      - group.secondfloor_thermo
+      - group.motions
+      - group.doors
+      - camera.mjpeg_camera
+wine:
+    name: Wine Room
+    view: yes
+    entities:
+      - group.winegroup
+advanced:
+    view: yes
+    entities:
+      - group.all_automations
+      - group.zwave
+      - group.systeminfo
+doors:
+    name: Doors
+    entities:
+      - binary_sensor.back_door
+      - binary_sensor.basement_door
+      - binary_sensor.front_door
+      - binary_sensor.sliding_door
+motions:
+    name: Motion
+    entities:
+      - binary_sensor.basement_motion
+      - binary_sensor.entrance_motion
+      - binary_sensor.family_motion
+firstfloor_thermo:
+    name: First Floor Thermostat
+    entities:
+      - climate.living_room
+      - sensor.living_room_thermostat_hvac_state
+      - sensor.living_room_thermostat_humidity
+secondfloor_thermo:
+    name: Upstairs Thermostat
+    entities:
+      - climate.upstairs
+      - sensor.upstairs_thermostat_hvac_state
+      - sensor.upstairs_thermostat_humidity
+zwave:
+    name: ZWave Devices
+    entities:
+      - zwave.aeotec_zw090_zstick_gen5_us
+      - zwave.kwikset_touchpad_electronic_deadbolt
+      - zwave.leviton_vri061lx_multilevel_scene_switch
+      - zwave.leviton_vrs151lz_binary_scene_switch
+      - zwave.leviton_vrs151lz_binary_scene_switch_2
+      - zwave.schlage_be469nxcen_touchscreen_deadbolt
+
+
+winegroup:
+    name: Wine Room
+    entities:
+      - climate.wine_room_temp
+      - climate.fin_temps
+      - sensor.wine_room_humidity
+systeminfo:
+    name: System Info
+    entities:
+      - sensor.myipopendnscom
