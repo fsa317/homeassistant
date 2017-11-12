@@ -1,0 +1,16 @@
+AppDaemon:
+  logfile: STDOUT
+  errorfile: STDERR
+  logsize: 100000
+  log_generations: 3
+  threads: 10
+  cert_path: /etc/letsencrypt/live/frank.apsquared.co/
+  cert_verify: False
+  time_zone: America/New_York
+  #api_port: 5000
+  #api_key: !secret api_key
+  #api_ssl_certificate: <path/to/root/CA/cert>
+  #api_ssl_key: <path/to/root/CA/key>
+HASS:
+  ha_url: http://127.0.0.1:8123 
+  ha_key: !secret http_password

@@ -78,3 +78,9 @@ media_player.samsung_8_series_55_un55ks8500:
   hidden: true
 media_player.samsung_led55_un55f6350:
   hidden: true
+lock.kwikset_touchpad_electronic_deadbolt_locked:
+  friendly_name: Back Door
+lock.schlage_be469nxcen_touchscreen_deadbolt_locked:
+  friendly_name: Front Door Lock
+sensor.zwave_front_door_battery:
+  friendly_name: Front Door Battery
