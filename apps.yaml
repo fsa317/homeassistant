@@ -1,3 +1,7 @@
 hello_world:
   module: hello
   class: HelloWorld
+
+doorlock:
+  module: homeutil
+  class: DoorLock
