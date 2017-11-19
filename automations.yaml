@@ -1,15 +1,15 @@
-- alias: 'Porch Light at night'
-  trigger:
-    platform: sun
-    event: sunset
-    offset: "-00:30:00"
-  action:
-    service: switch.turn_on
-    entity_id: switch.leviton_vrs151lz_binary_scene_switch_switch
-- alias: 'Porch light off'
-  trigger:
-    platform: time
-    at: "01:00:00"
-  action:
-    service: switch.turn_off
-    entity_id: switch.leviton_vrs151lz_binary_scene_switch_switch
+#- alias: 'Porch Light at night'
+#  trigger:
+#    platform: sun
+#    event: sunset
+#    offset: "-00:30:00"
+#  action:
+#    service: switch.turn_on
+#    entity_id: switch.leviton_vrs151lz_binary_scene_switch_switch
+#- alias: 'Porch light off'
+#  trigger:
+#    platform: time
+#    at: "01:00:00"
+#  action:
+#    service: switch.turn_off
+#    entity_id: switch.leviton_vrs151lz_binary_scene_switch_switch

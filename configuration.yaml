@@ -34,6 +34,9 @@ influxdb:
       - switch.leviton_vrs151lz_binary_scene_switch_switch_2
       - light.leviton_vri061lx_multilevel_scene_switch_level
       - switch.fireplace_switch
+      - sensor.current_solar_power
+      - sensor.wine_room_humidity
+      - sensor.disk_used_
 
 # Enables the frontend
 frontend:
@@ -68,7 +71,34 @@ conversation:
 # Enables support for tracking state changes over time
 history:
 
-# View all events in a logbook
+recorder:
+  purge_interval: 1
+  purge_keep_days: 5
+  include: 
+    domains:
+      - sensor
+      - switch
+      - binary_sensor
+      - climate
+      - lock
+      - light
+  exclude:
+    entities:
+     - sensor.last_boot
+     - sensor.date
+     - sensor.wine_cooling_since
+     - sensor.pws_weather_1d
+     - sensor.pws_weather_1n
+     - sensor.pws_weather_2d
+     - sensor.pws_weather_2n
+     - sensor.pws_weather_3d
+     - sensor.pws_weather_3n
+     - sensor.pws_weather_4d
+     - sensor.pws_weather_4n
+     - sensor.entrancemd_tripped
+     - sensor.familymd_tripped
+     - sensor.frontdoor_tripped
+
 logbook:
 
 # Enables a map showing the location of tracked devices
@@ -77,8 +107,20 @@ map:
 # Track the sun
 sun:
 
-# Weather prediction
+binary_sensor:
+  - platform: ping
+    host: pizero1
+  - platform: template
+    sensors:
+      wine_connected:
+        friendly_name: "Wine Room Connected"
+        device_class: connectivity
+        value_template: "{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_room_humidity.last_updated)))|float < 60 }}"
+
 sensor:
+  - platform: bitcoin
+    display_options:
+      - exchangerate
   - platform: yr
   - platform: dnsip
     name: "MyIP"
@@ -87,6 +129,29 @@ sensor:
     name: "Wine Room Humidity"
     unit_of_measurement: "%"
     value_template: '{{ value }}'
+  - platform: rest
+    resource: https://api.enphaseenergy.com/api/v2/systems/585444/summary?key=b99f94ecb36851197a00d112579d9769&user_id=4e6a4d7a4e4459340a
+    value_template: '{{ value_json.current_power }}'
+    scan_interval: 300 
+    name: "Current Solar Power"
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: processor_use
+      - type: since_last_boot
+  - platform: wunderground
+    api_key: !secret wunderground_key
+    monitored_conditions:
+      - weather_1d
+      - weather_1n
+      - weather_2d
+      - weather_2n
+      - weather_3d
+      - weather_3n
+      - weather_4d
+      - weather_4n
   - platform: template
     sensors:
       entrancemd_tripped:
@@ -99,6 +164,8 @@ sensor:
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.front_door.last_changed))/60) | round (0)}}'
       wine_iscooling:
         value_template: '{% if is_state("climate.wine_room_temp", "Cooling") -%}1{%- else -%}0{%- endif %}'
+      wine_cooling_since:
+        value_template: '{% if is_state("wine_iscooling", "1")  -%}{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_iscooling.last_updated))/60) | round (0)}}{%- else -%}0{%- endif %}'
       wine_isdefrosting:
         value_template: '{% if is_state("climate.fin_temps", "Defrosting") -%}1{%- else -%}0{%- endif %}'
       zwave_front_door_battery:
@@ -174,13 +241,36 @@ climate:
     swing_modes:
     fan_modes:
 
+amcrest:
+  - host: 192.168.1.17
+    username: admin
+    password: !secret basement_cam_pwd
+    stream_source: rtsp
+    resolution: low
+    sensors:
+      - motion_detector
+
 camera:
+  - platform: mjpeg
+    ip: 192.168.1.20
+    mjpeg_url: !secret outside_cam_url
   - platform: mjpeg 
     ip: 192.168.1.11
     username: guest
     password: !secret porchcam_password
     mjpeg_url: http://192.168.1.11/videostream.cgi?user=guest&pwd=guest
+  - platform: generic
+    still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/binghamton-new-york-region-current-radar-animation.gif'
+    name: WU Doppler Weather
+#  - platform: generic
+#    still_image_url: 'http://pizero1:3000/dashboard-solo/db/hass-dash?refresh=30s&panelId=1&orgId=1&theme=light&width=600&height=400&tz=UTC-05%3A00'
+#    name: Recent Wine Temps
 
+weblink:
+  entities:
+    - name: Grafana
+      url: https://frank.apsquared.co:3000/dashboard/db/hass-dash?refresh=30s&orgId=1&theme=light
+      icon: mdi:chart-bar
 nest:
   client_id: dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca
   client_secret: Ydo15n8gGoSnUEWtxbmKuBTWN
@@ -225,6 +315,12 @@ envisalink:
 device_tracker:
   - platform: owntracks_http
     max_gps_accuracy: 300
+
+input_boolean:
+  enable_front_door_autolock:
+    name: Enable Front Door AutoLock
+    initial: on
+    icon: mdi:lock
 
 #vera:
 #  vera_controller_url: http://192.168.1.4:3480/

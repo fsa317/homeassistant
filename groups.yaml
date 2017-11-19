@@ -5,32 +5,44 @@ default_view:
     entities:
       - updater.updater
       - sun.sun
-      - sensor.yr_symbol
       - sensor.entrancemd_tripped
       - sensor.frontdoor_tripped
       - sensor.familymd_tripped
       - sensor.basementmd_tripped
       - device_tracker.frank_samsung
-      - group.firstfloor_thermo
-      - group.secondfloor_thermo
-      - group.motions
-      - group.doors
       - group.locks
       - group.lights
       - group.fireplace
-      - camera.mjpeg_camera
+      - group.motions
+      - group.doors
+      - group.firstfloor_thermo
+      - group.secondfloor_thermo
 wine:
     name: Wine Room
     view: yes
     entities:
       - group.winegroup
+cameras:
+    name: Cameras
+    view: yes
+    entities:
+      - camera.mjpeg_camera
+      - camera.mjpeg_camera_2
+      - camera.amcrest_camera
+weather:
+    name: Weather
+    view: yes
+    entities:
+      - group.daily_forecast
+      - group.solar
+      - camera.wu_doppler_weather
 advanced:
     view: yes
     entities:
-      - group.zwave
+      - group.myautomations
       - group.systeminfo
       - group.alarm
-      - group.myautomations
+      - group.zwave
 doors:
     name: Doors
     entities:
@@ -44,6 +56,7 @@ motions:
       - binary_sensor.basement_motion
       - binary_sensor.entrance_motion
       - binary_sensor.family_motion
+      - sensor.amcrest_camera_motion_detected
 firstfloor_thermo:
     name: First Floor Thermostat
     entities:
@@ -93,12 +106,36 @@ winegroup:
       - climate.wine_room_temp
       - climate.fin_temps
       - sensor.wine_room_humidity
+      - sensor.wine_cooling_since
 systeminfo:
     name: System Info
     entities:
       - sensor.myipopendnscom
+      - binary_sensor.wine_connected
+      - binary_sensor.ping_binary_sensor
+      - sensor.since_last_boot
+      - sensor.ram_available
+      - sensor.disk_used_
+      - sensor.cpu_used
+      - weblink.grafana
 myautomations:
     name: My Automations
     entities:
+      - input_boolean.enable_front_door_autolock
       - automation.porch_light_at_night
       - automation.porch_light_off
+solar:
+    name: Solar
+    entities:
+      - sensor.current_solar_power
+daily_forecast:
+    name: Daily Forecast
+    entities:
+      - sensor.pws_weather_1d
+      - sensor.pws_weather_1n
+      - sensor.pws_weather_2d
+      - sensor.pws_weather_2n
+      - sensor.pws_weather_3d
+      - sensor.pws_weather_3n
+      - sensor.pws_weather_4d
+      - sensor.pws_weather_4n

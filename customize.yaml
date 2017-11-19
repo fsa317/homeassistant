@@ -84,3 +84,7 @@ lock.schlage_be469nxcen_touchscreen_deadbolt_locked:
   friendly_name: Front Door Lock
 sensor.zwave_front_door_battery:
   friendly_name: Front Door Battery
+binary_sensor.ping_binary_sensor:
+  friendly_name: Pizero1 Ping
+sensor.wine_cooling_since:
+  friendly_name: Cooling Since (min)
