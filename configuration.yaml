@@ -13,10 +13,16 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+notify:
+  - name: HTML_Notifier
+    platform: html5
+    gcm_api_key: !secret gcm_api_key
+    gcm_sender_id: !secret gcm_sender_id
+
 influxdb:
   host: 127.0.0.1
   username: home-assistant
-  password: hapass
+  password: !secret influx_pwd
   database: home_assistant
   include:
     entities:
@@ -241,14 +247,14 @@ climate:
     swing_modes:
     fan_modes:
 
-amcrest:
-  - host: 192.168.1.17
-    username: admin
-    password: !secret basement_cam_pwd
-    stream_source: rtsp
-    resolution: low
-    sensors:
-      - motion_detector
+#amcrest:
+#  - host: 192.168.1.17
+#    username: admin
+#    password: !secret basement_cam_pwd
+#    stream_source: rtsp
+#    resolution: low
+#    sensors:
+#      - motion_detector
 
 camera:
   - platform: mjpeg
@@ -333,7 +339,7 @@ panel_iframe:
   configurator:
     title: Configurator
     icon: mdi:wrench
-    url: http://frank.apsquared.co:3218
+    url: https://frank.apsquared.co:3218
 
 zone:
   - name: Home
