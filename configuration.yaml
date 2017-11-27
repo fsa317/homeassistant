@@ -13,6 +13,15 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+alexa:
+
+logger:
+  default: warn
+  logs:
+    homeassistant.components.alexa: debug
+
+intent_script: !include intent_script.yaml
+
 notify:
   - name: HTML_Notifier
     platform: html5
@@ -26,6 +35,8 @@ influxdb:
   database: home_assistant
   include:
     entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_upload 
       - binary_sensor.entrance_motion
       - sensor.living_room_thermostat_temperature
       - binary_sensor.front_door
@@ -124,12 +135,31 @@ binary_sensor:
         value_template: "{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_room_humidity.last_updated)))|float < 60 }}"
 
 sensor:
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 12
+    monitored_conditions:
+      - ping
+      - download
+      - upload
   - platform: bitcoin
     display_options:
       - exchangerate
   - platform: yr
   - platform: dnsip
     name: "MyIP"
+  - platform: scrape
+    resource: https://finance.google.com/finance?q=PEGA
+    select: ".pr span"
+    name: "PEGA"
+    scan_interval: 300
+  - platform: scrape
+    resource: https://finance.google.com/finance?q=EXEL
+    select: ".pr span"
+    name: "EXEL" 
+    scan_interval: 300
   - platform: mqtt
     state_topic: "ha/wine/Humidity"
     name: "Wine Room Humidity"
@@ -195,6 +225,8 @@ switch:
     payload_on: "1"
     payload_off: "0"
     optimistic: false
+  - platform: tplink
+    host: 192.168.1.38
 
 # Text to speech
 tts:
@@ -205,24 +237,24 @@ mqtt:
     
 
 zwave:
-    usb_path: /dev/ttyACM0
+    usb_path: /dev/zwave
     network_key: "0x45, 0xF9, 0x78, 0x9E, 0x0D, 0x4C, 0x29, 0x88, 0x21, 0x9C, 0xF2, 0xA5, 0xC4, 0xDD, 0xF6, 0xDB"
     device_config:
       light.leviton_vri061lx_multilevel_scene_switch_level:
-        polling_intensity: 3
+        polling_intensity: 1 
         refresh_value: true
       switch.leviton_vrs151lz_binary_scene_switch_switch:
-        polling_intensity: 2
+        polling_intensity: 1 
       switch.leviton_vrs151lz_binary_scene_switch_switch_2:
-        polling_intensity: 2      
+        polling_intensity: 1
       lock.schlage_be469nxcen_touchscreen_deadbolt_locked:
-        polling_intensity: 5
+        polling_intensity: 2
       lock.kwikset_touchpad_electronic_deadbolt_locked:
-        polling_intensity: 5
+        polling_intensity: 2
         
 climate:
   - platform: mqtt
-    initial: 58
+    initial: 61
     name: "Wine Room Temp"
     temperature_command_topic: "myhome/wine/setdesiredtemp"
     temperature_state_topic: "ha/wine/DesiredTemp"
@@ -247,24 +279,19 @@ climate:
     swing_modes:
     fan_modes:
 
-#amcrest:
-#  - host: 192.168.1.17
-#    username: admin
-#    password: !secret basement_cam_pwd
-#    stream_source: rtsp
-#    resolution: low
-#    sensors:
-#      - motion_detector
+amcrest:
+  - host: 192.168.1.17
+    username: admin
+    password: !secret basement_cam_pwd
+    stream_source: rtsp
+    resolution: low
+    sensors:
+      - motion_detector
 
 camera:
   - platform: mjpeg
-    ip: 192.168.1.20
+    ip: 192.168.1.18
     mjpeg_url: !secret outside_cam_url
-  - platform: mjpeg 
-    ip: 192.168.1.11
-    username: guest
-    password: !secret porchcam_password
-    mjpeg_url: http://192.168.1.11/videostream.cgi?user=guest&pwd=guest
   - platform: generic
     still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/binghamton-new-york-region-current-radar-animation.gif'
     name: WU Doppler Weather
@@ -277,6 +304,10 @@ weblink:
     - name: Grafana
       url: https://frank.apsquared.co:3000/dashboard/db/hass-dash?refresh=30s&orgId=1&theme=light
       icon: mdi:chart-bar
+    - name: Video Recorder
+      url: http://192.168.1.29:8848
+      icon: mdi:camera
+
 nest:
   client_id: dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca
   client_secret: Ydo15n8gGoSnUEWtxbmKuBTWN

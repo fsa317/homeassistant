@@ -14,3 +14,9 @@ AppDaemon:
 HASS:
   ha_url: http://127.0.0.1:8123 
   ha_key: !secret http_password
+HADashboard:
+  dash_dir: /home/ubuntu/dashdir
+  dash_url: http://192.168.1.28:5050
+  dash_ssl_certificate: /etc/letsencrypt/live/frank.apsquared.co/fullchain.pem
+  dash_ssl_key: /etc/letsencrypt/live/frank.apsquared.co/privkey.pem
+  dash_compile_on_start: 1

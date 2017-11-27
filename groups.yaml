@@ -18,18 +18,20 @@ default_view:
       - group.firstfloor_thermo
       - group.secondfloor_thermo
 wine:
+    icon: mdi:glass-tulip
     name: Wine Room
     view: yes
     entities:
       - group.winegroup
 cameras:
+    icon: mdi:camera
     name: Cameras
     view: yes
     entities:
       - camera.mjpeg_camera
-      - camera.mjpeg_camera_2
       - camera.amcrest_camera
 weather:
+    icon: mdi:weather-snowy-rainy
     name: Weather
     view: yes
     entities:
@@ -37,12 +39,21 @@ weather:
       - group.solar
       - camera.wu_doppler_weather
 advanced:
+    icon: mdi:settings
     view: yes
     entities:
       - group.myautomations
       - group.systeminfo
       - group.alarm
       - group.zwave
+finance: 
+    icon: mdi:currency-usd 
+    view: yes
+    name: Finances
+    entities:
+      - sensor.pega
+      - sensor.exel
+      - sensor.exchange_rate_1_btc
 doors:
     name: Doors
     entities:
@@ -85,6 +96,7 @@ fireplace:
     name: Fireplace
     entities:
       - switch.fireplace_switch
+      - switch.my_smart_plug
 zwave:
     name: ZWave Devices
     entities:
@@ -111,6 +123,9 @@ systeminfo:
     name: System Info
     entities:
       - sensor.myipopendnscom
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
       - binary_sensor.wine_connected
       - binary_sensor.ping_binary_sensor
       - sensor.since_last_boot
@@ -118,6 +133,7 @@ systeminfo:
       - sensor.disk_used_
       - sensor.cpu_used
       - weblink.grafana
+      - weblink.video_recorder
 myautomations:
     name: My Automations
     entities:

@@ -88,3 +88,11 @@ binary_sensor.ping_binary_sensor:
   friendly_name: Pizero1 Ping
 sensor.wine_cooling_since:
   friendly_name: Cooling Since (min)
+camera.amcrest_camera:
+  friendly_name: Basement Camera
+camera.mjpeg_camera:
+  friendly_name: Outside Camera
+sensor.amcrest_camera_motion_detected:
+  friendly_name: Basement Camera Motion
+switch.my_smart_plug:
+  friendly_name: Christmas Tree
