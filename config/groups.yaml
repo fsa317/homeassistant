@@ -1,0 +1,178 @@
+#rename to something else to restore OOTB default view
+default_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+      - updater.updater
+      - sensor.entrancemd_tripped
+      - sensor.frontdoor_tripped
+      - sensor.familymd_tripped
+      - sensor.basementmd_tripped
+      - device_tracker.frank_samsung
+      - device_tracker.samsunggalaxys7edgehome 
+      - device_tracker.tiffanys_iphone
+      - device_tracker.tiffanysiphonehome 
+      - group.locks
+      - group.lights
+      - group.fireplace
+      - group.motions
+      - group.doors
+      - group.frontdoor
+      - group.firstfloor_thermo
+      - group.secondfloor_thermo
+wine:
+    icon: mdi:glass-tulip
+    name: Wine Room
+    view: yes
+    entities:
+      - group.winegroup
+cameras:
+    icon: mdi:camera
+    name: Cameras
+    view: yes
+    entities:
+      - camera.front_door
+      - camera.mjpeg_camera
+      - camera.amcrest_camera
+weather:
+    icon: mdi:weather-snowy-rainy
+    name: Weather
+    view: yes
+    entities:
+      - group.daily_forecast
+      - group.solar
+      - camera.wu_doppler_weather
+advanced:
+    icon: mdi:settings
+    view: yes
+    entities:
+      - group.myautomations
+      - group.systeminfo
+      - group.alarm
+      - group.ringstatus
+      - group.zwave
+
+frontdoor:
+    name: Front Door
+    entities:
+      - binary_sensor.ring_front_door_ding
+      - binary_sensor.ring_front_door_motion
+      - sensor.ring_front_door_last_ding
+      - sensor.ring_front_door_last_motion
+      - weblink.ring_video
+
+ringstatus:
+    name: Ring Status
+    entities:
+      - sensor.ring_front_door_wifi_signal_category
+      - sensor.ring_front_door_wifi_signal_strength
+finance: 
+    icon: mdi:currency-usd 
+    view: yes
+    name: Finances
+    entities:
+      - sensor.pega
+      - sensor.exel
+      - sensor.exchange_rate_1_btc
+doors:
+    name: Doors
+    entities:
+      - binary_sensor.back_door
+      - binary_sensor.basement_door
+      - binary_sensor.front_door
+      - binary_sensor.sliding_door
+motions:
+    name: Motion
+    entities:
+      - binary_sensor.basement_motion
+      - binary_sensor.entrance_motion
+      - binary_sensor.family_motion
+      - sensor.amcrest_camera_motion_detected
+firstfloor_thermo:
+    name: First Floor Thermostat
+    entities:
+      - climate.living_room
+      - sensor.living_room_thermostat_hvac_state
+      - sensor.living_room_thermostat_humidity
+secondfloor_thermo:
+    name: Upstairs Thermostat
+    entities:
+      - climate.upstairs
+      - sensor.upstairs_thermostat_hvac_state
+      - sensor.upstairs_thermostat_humidity
+lights:
+    name: Lights
+    entities:
+      - switch.leviton_vrs151lz_binary_scene_switch_switch
+      - light.leviton_vri061lx_multilevel_scene_switch_level
+      - switch.leviton_vrs151lz_binary_scene_switch_switch_2
+locks:
+    name: Locks
+    entities:
+      - lock.kwikset_touchpad_electronic_deadbolt_locked
+      - lock.schlage_be469nxcen_touchscreen_deadbolt_locked
+      - sensor.zwave_front_door_battery
+fireplace:
+    name: Fireplace
+    entities:
+      - switch.fireplace_switch
+      - switch.my_smart_plug
+zwave:
+    name: ZWave Devices
+    entities:
+      - zwave.aeotec_zw090_zstick_gen5_us
+      - zwave.kwikset_touchpad_electronic_deadbolt
+      - zwave.leviton_vri061lx_multilevel_scene_switch
+      - zwave.leviton_vrs151lz_binary_scene_switch
+      - zwave.leviton_vrs151lz_binary_scene_switch_2
+      - zwave.schlage_be469nxcen_touchscreen_deadbolt
+      - zwave.aeotec_zw117_range_extender_6
+alarm:
+    name: Alarm
+    entities:
+      - alarm_control_panel.home_alarm
+      - sensor.home_alarm_keypad
+
+winegroup:
+    name: Wine Room
+    entities:
+      - climate.wine_room_temp
+      - climate.fin_temps
+      - sensor.wine_room_humidity
+      - sensor.wine_cooling_since
+systeminfo:
+    name: System Info
+    entities:
+      - sensor.myipopendnscom
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - binary_sensor.wine_connected
+      - binary_sensor.ping_binary_sensor
+      - sensor.since_last_boot
+      - sensor.ram_available
+      - sensor.disk_used_
+      - sensor.cpu_used
+      - weblink.grafana
+      - weblink.video_recorder
+myautomations:
+    name: My Automations
+    entities:
+      - input_boolean.enable_front_door_autolock
+      - automation.porch_light_at_night
+      - automation.porch_light_off
+solar:
+    name: Solar
+    entities:
+      - sensor.current_solar_power
+daily_forecast:
+    name: Daily Forecast
+    entities:
+      - sensor.pws_weather_1d
+      - sensor.pws_weather_1n
+      - sensor.pws_weather_2d
+      - sensor.pws_weather_2n
+      - sensor.pws_weather_3d
+      - sensor.pws_weather_3n
+      - sensor.pws_weather_4d
+      - sensor.pws_weather_4n

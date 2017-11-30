@@ -1,0 +1,46 @@
+- alias: 'Cooling Since'
+  trigger:
+      platform: numeric_state
+      entity_id: sensor.wine_cooling_since
+      above: 3
+  action:
+      service: notify.html_notifier
+      data_template:
+        title: "Wine Room Cooling"
+        message: "Wine room has been calling for {{ states.sensor.wine_cooling_since.state }} minutes."
+- alias: 'Back Door Open'
+  trigger:
+      platform: state
+      entity_id: binary_sensor.back_door
+      to: 'on'
+      for:
+        minutes: 5
+  action:
+      service: notify.html_notifier
+      data_template:
+        title: "Back Door Open"
+        message: "Back Door has been open for a while"
+- alias: 'Battery Level'
+  trigger:
+      platform: numeric_state
+      entity_id: sensor.zwave_front_door_battery
+      below: 30
+  action:
+      service: notify.html_notifier
+      data_template:
+        title: "Front Door Battery Low"
+        message: "Front Door Battery Low"
+- alias: 'Switch Timer'
+  trigger:
+    platform: time
+    at: "16:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.my_smart_plug
+- alias: 'Switch Timer off'
+  trigger:
+    platform: time
+    at: "22:00:00"
+  action:
+    service: switch.turn_off
+    entity_id: switch.my_smart_plug
