@@ -96,3 +96,5 @@ sensor.amcrest_camera_motion_detected:
   friendly_name: Basement Camera Motion
 switch.my_smart_plug:
   friendly_name: Christmas Tree
+device_tracker.tiffanys_iphone:
+  friendly_name: Tiffany
