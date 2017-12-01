@@ -1,0 +1,23 @@
+  disableautolock:
+    alias: "Disable Auto Lock for 30 mins"
+    sequence:
+      - alias: logit
+        service: logbook.log
+        data:
+          name: "Disable Auto Lock: "
+          message: "Off"
+      - alias: Turn off boolean
+        service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.enable_front_door_autolock
+      - delay:
+          minutes: 5
+      - alias: Turn off boolean
+        service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.enable_front_door_autolock
+      - alias: logit
+        service: logbook.log
+        data:
+          name: "Disable Auto Lock: "
+          message: "On"

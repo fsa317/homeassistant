@@ -22,16 +22,6 @@ logger:
     homeassistant.components.alexa: debug
     requests.packages.urllib3.connectionpool: critical
 
-notify:
-  - name: HTML_Notifier
-    platform: html5
-    gcm_api_key: !secret gcm_api_key
-    gcm_sender_id: !secret gcm_sender_id
-
-ring:
-  username: !secret ring_email
-  password: !secret ring_pass 
-
 # Enables the frontend
 frontend:
 
@@ -73,112 +63,6 @@ map:
 # Track the sun
 sun:
 
-binary_sensor:
-  - platform: ring
-  - platform: ping
-    host: pizero1
-  - platform: template
-    sensors:
-      wine_connected:
-        friendly_name: "Wine Room Connected"
-        device_class: connectivity
-        value_template: "{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_room_humidity.last_updated)))|float < 60 }}"
-
-sensor:
-  - platform: ring
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 12
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-  - platform: bitcoin
-    display_options:
-      - exchangerate
-  - platform: yr
-  - platform: dnsip
-    name: "MyIP"
-  - platform: scrape
-    resource: https://finance.google.com/finance?q=PEGA
-    select: ".pr span"
-    name: "PEGA"
-    scan_interval: 300
-  - platform: scrape
-    resource: https://finance.google.com/finance?q=EXEL
-    select: ".pr span"
-    name: "EXEL" 
-    scan_interval: 300
-  - platform: mqtt
-    state_topic: "ha/wine/Humidity"
-    name: "Wine Room Humidity"
-    unit_of_measurement: "%"
-    value_template: '{{ value }}'
-  - platform: rest
-    resource: https://api.enphaseenergy.com/api/v2/systems/585444/summary?key=b99f94ecb36851197a00d112579d9769&user_id=4e6a4d7a4e4459340a
-    value_template: '{{ value_json.current_power }}'
-    scan_interval: 300 
-    name: "Current Solar Power"
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /
-      - type: memory_free
-      - type: processor_use
-      - type: since_last_boot
-  - platform: wunderground
-    api_key: !secret wunderground_key
-    monitored_conditions:
-      - weather_1d
-      - weather_1n
-      - weather_2d
-      - weather_2n
-      - weather_3d
-      - weather_3n
-      - weather_4d
-      - weather_4n
-  - platform: template
-    sensors:
-      entrancemd_tripped:
-        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.entrance_motion.last_changed))/60) | round (0)}}'
-      familymd_tripped:
-        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.family_motion.last_changed))/60) | round (0)}}'
-      basementmd_tripped:
-        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.basement_motion.last_changed))/60) | round (0)}}'
-      frontdoor_tripped:
-        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.front_door.last_changed))/60) | round (0)}}'
-      wine_iscooling:
-        value_template: '{% if is_state("climate.wine_room_temp", "Cooling") -%}1{%- else -%}0{%- endif %}'
-      wine_cooling_since:
-        value_template: '{% if is_state("sensor.wine_iscooling", "1")  -%}{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_iscooling.last_updated))/60) | round (0)}}{%- else -%}0{%- endif %}'
-      wine_isdefrosting:
-        value_template: '{% if is_state("climate.fin_temps", "Defrosting") -%}1{%- else -%}0{%- endif %}'
-      zwave_front_door_battery:
-        value_template: '{{ states.zwave.schlage_be469nxcen_touchscreen_deadbolt.attributes.battery_level|default(0) }}'
-        icon_template: >
-          {% set battery_level = states.zwave.schlage_be469nxcen_touchscreen_deadbolt.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) |int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-        
-switch:
-  - platform: mqtt
-    name: "Fireplace Switch"
-    state_topic: "ha/fireplace"
-    command_topic: "myhome/fireplace"
-    payload_on: "1"
-    payload_off: "0"
-    optimistic: false
-  - platform: tplink
-    host: 192.168.1.38
-
 # Text to speech
 tts:
   - platform: google
@@ -186,91 +70,21 @@ tts:
 mqtt:
     broker: pizero1
     
-
-zwave:
-    usb_path: /dev/zwave
-    network_key: "0x45, 0xF9, 0x78, 0x9E, 0x0D, 0x4C, 0x29, 0x88, 0x21, 0x9C, 0xF2, 0xA5, 0xC4, 0xDD, 0xF6, 0xDB"
-    device_config:
-      light.leviton_vri061lx_multilevel_scene_switch_level:
-        polling_intensity: 1 
-        refresh_value: true
-      switch.leviton_vrs151lz_binary_scene_switch_switch:
-        polling_intensity: 1 
-      switch.leviton_vrs151lz_binary_scene_switch_switch_2:
-        polling_intensity: 1
-      lock.schlage_be469nxcen_touchscreen_deadbolt_locked:
-        polling_intensity: 2
-      lock.kwikset_touchpad_electronic_deadbolt_locked:
-        polling_intensity: 2
-        
-climate:
-  - platform: mqtt
-    initial: 59
-    name: "Wine Room Temp"
-    temperature_command_topic: "myhome/wine/setdesiredtemp"
-    temperature_state_topic: "ha/wine/DesiredTemp"
-    current_temperature_topic: "ha/wine/Room Temp"
-    mode_state_topic: "ha/wine/Cooling" 
-    modes:
-      - "Cooling"
-      - "Off"
-    swing_modes:
-    fan_modes:
-  - platform: mqtt
-    initial: 32
-    target_temp_low: 0 
-    name: "Fin Temps"
-    temperature_command_topic: "myhome/wine/setfinmintemp"
-    temperature_state_topic: "ha/wine/finMinTemp"
-    current_temperature_topic: "ha/wine/Fin Temp"
-    mode_state_topic: "ha/wine/Defrosting" 
-    modes:
-      - "Defrosting"
-      - "Normal"
-    swing_modes:
-    fan_modes:
-
 ffmpeg:
 
-amcrest:
-  - host: 192.168.1.17
-    username: admin
-    password: !secret basement_cam_pwd
-    stream_source: rtsp
-    resolution: low
-    sensors:
-      - motion_detector
+notify:
+  - name: HTML_Notifier
+    platform: html5
+    gcm_api_key: !secret gcm_api_key
+    gcm_sender_id: !secret gcm_sender_id
 
-camera:
-  - platform: ring
-  - platform: mjpeg
-    ip: 192.168.1.18
-    mjpeg_url: !secret outside_cam_url
-  - platform: generic
-    still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/binghamton-new-york-region-current-radar-animation.gif'
-    name: WU Doppler Weather
-
-weblink:
-  entities:
-    - name: Grafana
-      url: https://frank.apsquared.co:3000/dashboard/db/hass-dash?refresh=30s&orgId=1&theme=light
-      icon: mdi:chart-bar
-    - name: Video Recorder
-      url: http://192.168.1.29:8848
-      icon: mdi:camera
-    - name: Ring Video
-      url: https://ring.com/account/activity
-      icon: mdi:camera
+ring:
+  username: !secret ring_email
+  password: !secret ring_pass
 
 nest:
   client_id: dd64a10b-ade6-4b83-9cc2-ed302d9ac7ca
   client_secret: Ydo15n8gGoSnUEWtxbmKuBTWN
-
-input_boolean:
-  enable_front_door_autolock:
-    name: Enable Front Door AutoLock
-    initial: on
-    icon: mdi:lock
 
 panel_iframe:
   grafana:
@@ -289,6 +103,15 @@ zone:
     radius: 250
     icon: mdi:account-multiple
 
+sensor: !include config/sensor.yaml
+binary_sensor: !include config/binary_sensor.yaml
+switch: !include config/switch.yaml
+input_boolean: !include config/input_boolean.yaml
+zwave: !include config/zwave.yaml
+weblink: !include config/weblink.yaml
+climate: !include config/climate.yaml
+amcrest: !include config/amcrest.yaml
+camera: !include config/camera.yaml
 recorder: !include config/recorder.yaml
 influxdb: !include config/influxdb.yaml
 envisalink: !include config/envisalink.yaml

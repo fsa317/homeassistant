@@ -1,0 +1,7 @@
+  - platform: ring
+  - platform: mjpeg
+    ip: 192.168.1.18
+    mjpeg_url: !secret outside_cam_url
+  - platform: generic
+    still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/binghamton-new-york-region-current-radar-animation.gif'
+    name: WU Doppler Weather

@@ -29,3 +29,6 @@
      - sensor.home_alarm_keypad
      - sensor.current_solar_power
      - sensor.cpu_used
+     - sensor.basementmd_tripped
+     - binary_sensor.entrance_motion
+     - binary_sensor.family_motion

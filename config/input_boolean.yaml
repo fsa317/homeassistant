@@ -1,0 +1,4 @@
+  enable_front_door_autolock:
+    name: Enable Front Door AutoLock
+    initial: on
+    icon: mdi:lock

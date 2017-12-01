@@ -1,0 +1,10 @@
+  entities:
+    - name: Grafana
+      url: https://frank.apsquared.co:3000/dashboard/db/hass-dash?refresh=30s&orgId=1&theme=light
+      icon: mdi:chart-bar
+    - name: Video Recorder
+      url: http://192.168.1.29:8848
+      icon: mdi:camera
+    - name: Ring Video
+      url: https://ring.com/account/activity
+      icon: mdi:camera

@@ -1,0 +1,14 @@
+    usb_path: /dev/zwave
+    network_key: "0x45, 0xF9, 0x78, 0x9E, 0x0D, 0x4C, 0x29, 0x88, 0x21, 0x9C, 0xF2, 0xA5, 0xC4, 0xDD, 0xF6, 0xDB"
+    device_config:
+      light.leviton_vri061lx_multilevel_scene_switch_level:
+        polling_intensity: 1
+        refresh_value: true
+      switch.leviton_vrs151lz_binary_scene_switch_switch:
+        polling_intensity: 1
+      switch.leviton_vrs151lz_binary_scene_switch_switch_2:
+        polling_intensity: 1
+      lock.schlage_be469nxcen_touchscreen_deadbolt_locked:
+        polling_intensity: 2
+      lock.kwikset_touchpad_electronic_deadbolt_locked:
+        polling_intensity: 2

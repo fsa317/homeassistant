@@ -1,0 +1,25 @@
+  - platform: mqtt
+    initial: 59
+    name: "Wine Room Temp"
+    temperature_command_topic: "myhome/wine/setdesiredtemp"
+    temperature_state_topic: "ha/wine/DesiredTemp"
+    current_temperature_topic: "ha/wine/Room Temp"
+    mode_state_topic: "ha/wine/Cooling"
+    modes:
+      - "Cooling"
+      - "Off"
+    swing_modes:
+    fan_modes:
+  - platform: mqtt
+    initial: 32
+    target_temp_low: 0
+    name: "Fin Temps"
+    temperature_command_topic: "myhome/wine/setfinmintemp"
+    temperature_state_topic: "ha/wine/finMinTemp"
+    current_temperature_topic: "ha/wine/Fin Temp"
+    mode_state_topic: "ha/wine/Defrosting"
+    modes:
+      - "Defrosting"
+      - "Normal"
+    swing_modes:
+    fan_modes:
