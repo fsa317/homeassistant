@@ -12,6 +12,7 @@
     entities:
      - sensor.since_last_boot
      - sensor.date
+     - sensor.time
      - sensor.wine_cooling_since
      - sensor.pws_weather_1d
      - sensor.pws_weather_1n

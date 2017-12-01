@@ -2,12 +2,12 @@
   trigger:
       platform: numeric_state
       entity_id: sensor.wine_cooling_since
-      above: 3
+      above: 10
   action:
       service: notify.html_notifier
       data_template:
         title: "Wine Room Cooling"
-        message: "Wine room has been calling for {{ states.sensor.wine_cooling_since.state }} minutes."
+        message: "Wine room has been cooling for {{ states.sensor.wine_cooling_since.state }} minutes."
 - alias: 'Back Door Open'
   trigger:
       platform: state
@@ -41,6 +41,20 @@
   trigger:
     platform: time
     at: "22:00:00"
+  action:
+    service: switch.turn_off
+    entity_id: switch.my_smart_plug
+- alias: 'Switch Timer 2'
+  trigger:
+    platform: time
+    at: "07:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.my_smart_plug
+- alias: 'Switch Timer 2 off'
+  trigger:
+    platform: time
+    at: "09:00:00"
   action:
     service: switch.turn_off
     entity_id: switch.my_smart_plug
