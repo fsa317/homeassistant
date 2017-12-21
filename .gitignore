@@ -3,5 +3,7 @@
 !scenes
 !.gitignore
 !config
+!apps
+!apps/*.py
 secrets.yaml
 known_devices.yaml
