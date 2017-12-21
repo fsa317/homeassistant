@@ -1,3 +1,6 @@
   adhoc_tts:
     name: "What to say"
     initial: ""
+  welcome_name_tts:
+    name: "Welcome Name:"
+    initial: ""
