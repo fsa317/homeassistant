@@ -21,6 +21,7 @@ logger:
   logs:
     homeassistant.components.alexa: debug
     requests.packages.urllib3.connectionpool: critical
+    homeassistant.components.media_player: debug
 
 # Enables the frontend
 frontend:
@@ -64,8 +65,20 @@ map:
 sun:
 
 # Text to speech
-tts:
-  - platform: google
+#tts:
+#  - platform: google
+#  - platform: amazon_polly
+#    aws_access_key_id: AKIAIBF756PY3HP7EU3A
+#    aws_secret_access_key: !secret polly_secret
+#    region_name: 'us-east-1'
+#    voice: Brian
+#    text_type: ssml
+
+#media_player:
+#  - platform: tts_bluetooth_speaker
+#    address: 0C:FC:83:98:36:24  # Required - for example, 00:2F:AD:12:0D:42
+#    volume: 0.75                   # Optional - default is 0.5
+
 
 mqtt:
     broker: pizero1
@@ -107,6 +120,8 @@ sensor: !include config/sensor.yaml
 binary_sensor: !include config/binary_sensor.yaml
 switch: !include config/switch.yaml
 input_boolean: !include config/input_boolean.yaml
+input_text: !include config/input_text.yaml
+input_select: !include config/input_select.yaml
 zwave: !include config/zwave.yaml
 weblink: !include config/weblink.yaml
 climate: !include config/climate.yaml

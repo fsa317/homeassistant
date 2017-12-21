@@ -1,17 +1,18 @@
 #rename to something else to restore OOTB default view
 default_view:
     view: yes
-    icon: mdi:home 
+    icon: mdi:home
     entities:
       - updater.updater
+      - sensor.last_motion
       - sensor.entrancemd_tripped
       - sensor.frontdoor_tripped
       - sensor.familymd_tripped
       - sensor.basementmd_tripped
       - device_tracker.frank_samsung
-      - device_tracker.samsunggalaxys7edgehome 
+      - device_tracker.samsunggalaxys7edgehome
       - device_tracker.tiffanys_iphone
-      - device_tracker.tiffanysiphonehome 
+      - device_tracker.tiffanysiphonehome
       - group.locks
       - group.lights
       - group.fireplace
@@ -46,8 +47,11 @@ advanced:
     icon: mdi:settings
     view: yes
     entities:
+      - group.jarvis
       - group.myautomations
+      - group.devices
       - group.systeminfo
+      - group.links
       - group.alarm
       - group.ringstatus
       - group.zwave
@@ -66,8 +70,8 @@ ringstatus:
     entities:
       - sensor.ring_front_door_wifi_signal_category
       - sensor.ring_front_door_wifi_signal_strength
-finance: 
-    icon: mdi:currency-usd 
+finance:
+    icon: mdi:currency-usd
     view: yes
     name: Finances
     entities:
@@ -147,20 +151,37 @@ systeminfo:
       - sensor.speedtest_ping
       - sensor.speedtest_download
       - sensor.speedtest_upload
-      - binary_sensor.wine_connected
-      - binary_sensor.ping_binary_sensor
+      - sensor.uptime
       - sensor.since_last_boot
       - sensor.ram_available
       - sensor.disk_used_
       - sensor.cpu_used
+
+links:
+  name: links
+  entities:
       - weblink.grafana
       - weblink.video_recorder
+
+devices:
+  name: Device Status
+  entities:
+      - binary_sensor.ping_binary_sensor
+      - binary_sensor.fireplace_ping
+      - binary_sensor.wine_connected
+      - binary_sensor.jarvis_ping
+
 myautomations:
     name: My Automations
     entities:
       - input_boolean.enable_front_door_autolock
-      - automation.porch_light_at_night
-      - automation.porch_light_off
+      - input_select.house_status
+jarvis:
+    name: Jarvis
+    entities:
+      - script.welcome_tts
+      - input_text.adhoc_tts
+      - script.adhoc_tts
 solar:
     name: Solar
     entities:

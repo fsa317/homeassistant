@@ -1,3 +1,51 @@
+  tts_say:
+    sequence:
+      - condition: time
+        after: '08:00:00'
+        before: '21:00:00'
+      - service: mqtt.publish
+        data_template:
+          topic: 'jarvis/tts'
+          payload: '{{ msg }}'
+
+  tts_whisper:
+    sequence:
+      - condition: time
+        after: '08:00:00'
+        before: '21:00:00'
+      - service: mqtt.publish
+        data_template:
+          topic: 'jarvis/tts'
+          payload: >
+            <amazon:effect name="whispered">
+            {{msg}}
+            </amazon:effect>
+
+  welcome_tts:
+    sequence:
+      - service: script.tts_say
+        data:
+          msg: "Hello, I am Jarvis, at your service"
+
+  adhoc_tts:
+    sequence:
+      - service: script.tts_say
+        data_template:
+          msg: "{{ states.input_text.adhoc_tts.state }} "
+
+  jarvis_say_something:
+    sequence:
+      - service: script.tts_say
+        data_template:
+          msg: >
+            {{ [
+            "Birf days were the worst days, now we sip champagne when we thirstay",
+            "Yall going to make me lose my mind, up in here, up in here.",
+            "Welcome to the jungle we got fun and games.",
+            "Aint no party like an Apap party cause an Apap party dont stop",
+            "Its 5 oclock somewhere"
+            ] | random }}
+
   disableautolock:
     alias: "Disable Auto Lock for 30 mins"
     sequence:
@@ -10,6 +58,9 @@
         service: input_boolean.turn_off
         data:
           entity_id: input_boolean.enable_front_door_autolock
+      - service: script.tts_say
+        data:
+           msg: "I will disable the automatic door lock for you."
       - delay:
           minutes: 5
       - alias: Turn off boolean
@@ -21,3 +72,6 @@
         data:
           name: "Disable Auto Lock: "
           message: "On"
+      - service: script.tts_say
+        data:
+           msg: "Automatic door lock enabled."

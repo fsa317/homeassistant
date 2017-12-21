@@ -1,0 +1,8 @@
+  house_status:
+    name: "House Status"
+    initial: Home
+    options:
+     - Home
+     - Away
+     - Extended Away
+     - Arriving

@@ -33,3 +33,4 @@
      - sensor.basementmd_tripped
      - binary_sensor.entrance_motion
      - binary_sensor.family_motion
+     - sensor.last_motion

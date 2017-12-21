@@ -1,3 +1,4 @@
+  - platform: uptime
   - platform: time_date
     display_options:
       - 'time'
@@ -27,6 +28,11 @@
     resource: https://finance.google.com/finance?q=EXEL
     select: ".pr span"
     name: "EXEL"
+    scan_interval: 300
+  - platform: scrape
+    resource: https://finance.google.com/finance?q=AMZN
+    select: ".pr span"
+    name: "AMZN"
     scan_interval: 300
   - platform: mqtt
     state_topic: "ha/wine/Humidity"
@@ -66,10 +72,15 @@
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.basement_motion.last_changed))/60) | round (0)}}'
       frontdoor_tripped:
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.front_door.last_changed))/60) | round (0)}}'
+      last_motion:
+        friendly_name: 'Last Motion'
+        value_template: >
+          {%- set sensors = [states("sensor.basementmd_tripped") | int, states("sensor.entrancemd_tripped") | int, states("sensor.familymd_tripped") | int , states("sensor.frontdoor_tripped")| int] -%}
+          {{ sensors | min }}
       wine_iscooling:
         value_template: '{% if is_state("climate.wine_room_temp", "Cooling") -%}1{%- else -%}0{%- endif %}'
       wine_cooling_since:
-        entity_id: sensor.time 
+        entity_id: sensor.time
         value_template: '{% if is_state("sensor.wine_iscooling", "1")  -%}{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_iscooling.last_updated))/60) | round (0)}}{%- else -%}0{%- endif %}'
       wine_isdefrosting:
         value_template: '{% if is_state("climate.fin_temps", "Defrosting") -%}1{%- else -%}0{%- endif %}'
@@ -85,4 +96,3 @@
           {% else %}
             mdi:battery-alert
           {% endif %}
-

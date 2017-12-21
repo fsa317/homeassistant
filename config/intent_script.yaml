@@ -45,11 +45,14 @@ WineRoomStatusIntent:
     title: "Wine Room"
     content: "The wine room is currently {{ states.climate.wine_room_temp.attributes.temperature }} degrees  with a humidity of {{ states.sensor.wine_room_humidity.state }} percent." 
 
-THANKSGIVING:
+WhoFarted:
   speech:
-    text: "Today we will have stuffing, green been casserole, bacon biscuits, creamed spinach, sweet potato with marshmallows, brussel sprouts with bacon and 2 types of turkey.  Oh, dont forget some beer, cocktails and wine.  Happy Thanksgiving!"
+    text: ""
   card:
     type: simple
-    title: "Apap Thanksgiving Menu"
-    content: "Today we will have stuffing, green been casserole, bacon biscuits, creamed spinach, sweet potato with marshmallows, brussel sprouts with bacon and 2 types of turkey.  Oh, dont forget some beer, cocktails and wine.  Happy Thanksgiving!"
-
+    title: "Who Farted?"
+    content: "Let me ask Jarvis who farted."
+  action:
+    service: script.tts_say
+    data:
+      msg: "It was me Jarvis, and it was a nasty one."

@@ -10,3 +10,7 @@ doorlock:
 porchlight:
   module: homeutil
   class: OutsideLights
+
+homestate:
+  module: homestate
+  class: HomeState
