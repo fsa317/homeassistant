@@ -13,7 +13,7 @@ class HomeState(appapi.AppDaemon):
   def initialize(self):
       self.log("[HOMESTATE] init HomeState")
       self.listen_state(self.sensorChange, "device_tracker.frank_samsung")
-      self.listen_state(self.sensorChange, "device_tracker.samsunggalaxys7edgehome")
+      self.listen_state(self.sensorChange, "device_tracker.galaxys9home")
       self.listen_state(self.sensorChange, "device_tracker.tiffanys_iphone")
       self.listen_state(self.sensorChange, "device_tracker.tiffanysiphonehome")
       self.listen_state(self.frontDoorOpened, "binary_sensor.front_door",old="off",new="on")
@@ -106,7 +106,7 @@ class HomeState(appapi.AppDaemon):
 
   def anyDeviceTrackerHome(self):
       dt1 = self.get_state("device_tracker.frank_samsung")
-      dt2 = self.get_state("device_tracker.samsunggalaxys7edgehome")
+      dt2 = self.get_state("device_tracker.galaxys9home")
       dt3 = self.get_state("device_tracker.tiffanys_iphone")
       dt4 = self.get_state("device_tracker.tiffanysiphonehome")
       if (dt1 == 'home'):

@@ -10,7 +10,7 @@ default_view:
       - sensor.familymd_tripped
       - sensor.basementmd_tripped
       - device_tracker.frank_samsung
-      - device_tracker.samsunggalaxys7edgehome
+      - device_tracker.galaxys9home
       - device_tracker.tiffanys_iphone
       - device_tracker.tiffanysiphonehome
       - group.locks

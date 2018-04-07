@@ -75,37 +75,13 @@
         title: "Front Door Battery Low"
         message: "Front Door Battery Low"
 
-- alias: 'Switch Timer'
-  trigger:
-    platform: time
-    at: "15:40:00"
-  action:
-    - service: switch.turn_on
-      entity_id: switch.my_smart_plug
-    - service: script.tts_say
-      data:
-        msg: "Merry Christmas Bitches!"
-
-- alias: 'Switch Timer off'
-  trigger:
-    platform: time
-    at: "22:00:00"
-  action:
-    service: switch.turn_off
-    entity_id: switch.my_smart_plug
-
-- alias: 'Switch Timer 2'
-  trigger:
-    platform: time
-    at: "07:00:00"
-  action:
-    service: switch.turn_on
-    entity_id: switch.my_smart_plug
-
-- alias: 'Switch Timer 2 off'
-  trigger:
-    platform: time
-    at: "09:00:00"
-  action:
-    service: switch.turn_off
-    entity_id: switch.my_smart_plug
+#- alias: 'Switch Timer'
+#  trigger:
+#    platform: time
+#    at: "15:40:00"
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.my_smart_plug
+#    - service: script.tts_say
+#      data:
+#        msg: "Merry Christmas Bitches!"
