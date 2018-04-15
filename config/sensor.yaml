@@ -19,21 +19,6 @@
   - platform: yr
   - platform: dnsip
     name: "MyIP"
-  - platform: scrape
-    resource: https://finance.google.com/finance?q=PEGA
-    select: ".pr span"
-    name: "PEGA"
-    scan_interval: 300
-  - platform: scrape
-    resource: https://finance.google.com/finance?q=EXEL
-    select: ".pr span"
-    name: "EXEL"
-    scan_interval: 300
-  - platform: scrape
-    resource: https://finance.google.com/finance?q=AMZN
-    select: ".pr span"
-    name: "AMZN"
-    scan_interval: 300
   - platform: mqtt
     state_topic: "ha/wine/Humidity"
     name: "Wine Room Humidity"

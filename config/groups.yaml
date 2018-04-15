@@ -75,8 +75,6 @@ finance:
     view: yes
     name: Finances
     entities:
-      - sensor.pega
-      - sensor.exel
       - sensor.exchange_rate_1_btc
 doors:
     name: Doors

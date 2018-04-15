@@ -62,7 +62,7 @@
         data:
            msg: "I will disable the automatic door lock for you."
       - delay:
-          minutes: 5
+          minutes: 10
       - alias: Turn off boolean
         service: input_boolean.turn_on
         data:
@@ -74,4 +74,4 @@
           message: "On"
       - service: script.tts_say
         data:
-           msg: "Automatic door lock enabled."
+           msg: "Automatic door lock has been enabled."
