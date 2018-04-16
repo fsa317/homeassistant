@@ -13,6 +13,8 @@ default_view:
       - device_tracker.galaxys9home
       - device_tracker.tiffanys_iphone
       - device_tracker.tiffanysiphonehome
+      - sensor.frank_location_lastupdate
+      - sensor.tiffany_location_lastupdate
       - group.locks
       - group.lights
       - group.fireplace
@@ -142,6 +144,8 @@ winegroup:
       - climate.fin_temps
       - sensor.wine_room_humidity
       - sensor.wine_cooling_since
+      - sensor.wine_lastupdate
+
 systeminfo:
     name: System Info
     entities:

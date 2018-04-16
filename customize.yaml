@@ -102,3 +102,9 @@ script.welcome_tts:
   friendly_name: Welcome Jarvis
 script.adhoc_tts:
   friendly_name: Jarvis Speak
+sensor.wine_lastupdate:
+  friendly_name: Wine Room Last Update (sec)
+sensor.frank_location_lastupdate:
+  friendly_name: Frank Last Update
+sensor.tiffany_location_lastupdate:
+  friendly_name: Tiff Last Update

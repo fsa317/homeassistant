@@ -8,6 +8,7 @@
       - climate
       - lock
       - light
+      - device_tracker
   exclude:
     entities:
      - sensor.since_last_boot
@@ -34,3 +35,6 @@
      - binary_sensor.entrance_motion
      - binary_sensor.family_motion
      - sensor.last_motion
+     - sensor.wine_lastupdate
+     - sensor.frank_location_lastupdate
+     - sensor.tiffany_location_lastupdate

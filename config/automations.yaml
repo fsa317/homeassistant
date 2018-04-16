@@ -54,7 +54,7 @@
       entity_id: binary_sensor.front_door
       to: 'on'
       for:
-        minutes: 1
+        minutes: 2
   action:
     - service: notify.html_notifier
       data_template:
