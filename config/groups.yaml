@@ -143,6 +143,7 @@ winegroup:
       - climate.wine_room_temp
       - climate.fin_temps
       - sensor.wine_room_humidity
+      - input_number.wine_bottle_count
       - sensor.wine_cooling_since
       - sensor.wine_lastupdate
 

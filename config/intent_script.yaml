@@ -16,18 +16,18 @@ TurnOnIntent:
         {%- else -%}
           {{ devicename }}
         {%- endif -%}
-      data_template: 
+      data_template:
         entity_id: >
-          {%- if 'fireplace' in devicename.lower() -%} 
-          switch.fireplace_switch 
-          {%- elif 'living' in devicename.lower() -%} 
-          light.leviton_vri061lx_multilevel_scene_switch_level 
+          {%- if 'fireplace' in devicename.lower() -%}
+          switch.fireplace_switch
+          {%- elif 'living' in devicename.lower() -%}
+          light.leviton_vri061lx_multilevel_scene_switch_level
           {%- elif 'christmas' in devicename.lower() -%}
           switch.my_smart_plug
           {%- endif -%}
 
 UnlockIntent:
-  speech: 
+  speech:
     text: "Yes Master.  Unlocking door"
   card:
     type: simple
@@ -38,12 +38,12 @@ UnlockIntent:
     entity_id: "lock.schlage_be469nxcen_touchscreen_deadbolt_locked"
 
 WineRoomStatusIntent:
-  speech: 
-    text: "The wine room is currently {{ states.climate.wine_room_temp.attributes.temperature }} degrees  with a humidity of {{ states.sensor.wine_room_humidity.state }} percent.  Perfect temperature for a glass of wine."
+  speech:
+    text: "Their are {{ states.input_number.wine_bottle_count.state | int }} bottles in storage.  The wine room is currently {{ states.climate.wine_room_temp.attributes.temperature }} degrees  with a humidity of {{ states.sensor.wine_room_humidity.state }} percent.  Perfect temperature for a glass of wine."
   card:
     type: simple
     title: "Wine Room"
-    content: "The wine room is currently {{ states.climate.wine_room_temp.attributes.temperature }} degrees  with a humidity of {{ states.sensor.wine_room_humidity.state }} percent." 
+    content: "Bottles: {{ states.input_number.wine_bottle_count.state | int }} Temp: {{ states.climate.wine_room_temp.attributes.temperature }} degrees  Humidity {{ states.sensor.wine_room_humidity.state }} percent."
 
 WhoFarted:
   speech:

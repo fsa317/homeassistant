@@ -28,3 +28,6 @@
       - sensor.zwave_front_door_battery
       - binary_sensor.ring_front_door_motion
       - binary_sensor.ring_front_door_ding
+      - device_tracker.frank_samsung
+      - device_tracker.tiffanys_iphone
+      - input_number.wine_bottle_count

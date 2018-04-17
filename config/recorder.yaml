@@ -9,6 +9,7 @@
       - lock
       - light
       - device_tracker
+      - input_number
   exclude:
     entities:
      - sensor.since_last_boot

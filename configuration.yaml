@@ -82,7 +82,7 @@ sun:
 
 mqtt:
     broker: pizero1
-    
+
 ffmpeg:
 
 notify:
@@ -122,6 +122,7 @@ switch: !include config/switch.yaml
 input_boolean: !include config/input_boolean.yaml
 input_text: !include config/input_text.yaml
 input_select: !include config/input_select.yaml
+input_number: !include config/input_number.yaml
 zwave: !include config/zwave.yaml
 weblink: !include config/weblink.yaml
 climate: !include config/climate.yaml

@@ -1,0 +1,6 @@
+  wine_bottle_count:
+    name: "Wine Bottle Count"
+    max: 250
+    min: 0
+    step: 1
+    mode: box
