@@ -108,3 +108,5 @@ sensor.frank_location_lastupdate:
   friendly_name: Frank Last Update
 sensor.tiffany_location_lastupdate:
   friendly_name: Tiff Last Update
+sensor.tesla_lastupdate:
+  friendly_name: Tesla Last Update

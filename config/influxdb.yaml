@@ -6,6 +6,12 @@
     entities:
       - sensor.speedtest_download
       - sensor.speedtest_upload
+      - sensor.home_usage_now
+      - sensor.battery_capacity
+      - sensor.battery_percentage
+      - sensor.battery_usage_now
+      - sensor.grid_usage_now
+      - sensor.solar_gen_now
       - binary_sensor.entrance_motion
       - sensor.living_room_thermostat_temperature
       - binary_sensor.front_door

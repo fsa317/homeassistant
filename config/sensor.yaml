@@ -24,6 +24,36 @@
     name: "Wine Room Humidity"
     unit_of_measurement: "%"
     value_template: '{{ value }}'
+  - platform: mqtt
+    name: "Home Usage Now"
+    state_topic: "ha/tesla/loadnow"
+    unit_of_measurement: "kW"
+    value_template: '{{ value | round(2) }}'
+  - platform: mqtt
+    name: "Battery Usage Now"
+    state_topic: "ha/tesla/batterynow"
+    unit_of_measurement: "kW"
+    value_template: '{{ value | round(2)}}'
+  - platform: mqtt
+    name: "Grid Usage Now"
+    state_topic: "ha/tesla/gridnow"
+    unit_of_measurement: "kW"
+    value_template: '{{ value | round(2)}}'
+  - platform: mqtt
+    name: "Solar Gen Now"
+    state_topic: "ha/tesla/solarnow"
+    unit_of_measurement: "kW"
+    value_template: '{{ value | round(2)}}'
+  - platform: mqtt
+    name: "Battery Percentage"
+    state_topic: "ha/tesla/batterypct"
+    unit_of_measurement: "%"
+    value_template: '{{ value | round(2) }}'
+  - platform: mqtt
+    name: "Battery Capacity"
+    state_topic: "ha/tesla/batterycpt"
+    unit_of_measurement: "kWH"
+    value_template: '{{ value | round(2) }}'
   - platform: rest
     resource: https://api.enphaseenergy.com/api/v2/systems/585444/summary?key=b99f94ecb36851197a00d112579d9769&user_id=4e6a4d7a4e4459340a
     value_template: '{{ value_json.current_power }}'
@@ -72,6 +102,9 @@
       wine_lastupdate:
         entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_room_humidity.last_changed))) | round (0)}}'
+      tesla_lastupdate:
+        entity_id: sensor.time
+        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.sensor.home_usage_now.last_changed))) | round (0)}}'
       frank_location_lastupdate:
         entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.device_tracker.frank_samsung.last_updated))/60) | round (0)}}'

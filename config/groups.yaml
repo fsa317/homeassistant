@@ -190,6 +190,15 @@ solar:
     name: Solar
     entities:
       - sensor.current_solar_power
+      - sensor.solar_gen_now
+      - sensor.home_usage_now
+      - sensor.battery_usage_now
+      - sensor.grid_usage_now
+      - sensor.battery_capacity
+      - sensor.battery_percentage
+      - sensor.tesla_lastupdate
+
+
 daily_forecast:
     name: Daily Forecast
     entities:
