@@ -182,6 +182,7 @@ myautomations:
 jarvis:
     name: Jarvis
     entities:
+      - input_boolean.jarvis_on
       - script.welcome_tts
       - input_text.adhoc_tts
       - script.adhoc_tts

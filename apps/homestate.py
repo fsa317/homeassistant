@@ -1,4 +1,4 @@
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 
 # input_select.house_status
 # binary_sensor.front_door
@@ -8,7 +8,7 @@ import appdaemon.appapi as appapi
 # device_tracker.tiffanys_iphone
 # device_tracker.tiffanysiphonehome
 
-class HomeState(appapi.AppDaemon):
+class HomeState(hass.Hass):
 
   def initialize(self):
       self.log("[HOMESTATE] init HomeState")

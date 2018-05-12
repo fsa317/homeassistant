@@ -1,3 +1,18 @@
+- alias: 'shut off jarvis'
+  trigger:
+    platform: 'time'
+    at: '21:00:00'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.jarvis_on
+- alias: 'turn on jarvis'
+  trigger:
+    platform: 'time'
+    at: '8:00:00'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.jarvis_on
+
 - alias: 'Cooling Since'
   trigger:
       platform: numeric_state
@@ -8,6 +23,28 @@
       data_template:
         title: "Wine Room Cooling"
         message: "Wine room has been cooling for {{ states.sensor.wine_cooling_since.state }} minutes."
+
+- alias: 'Tesla Since'
+  trigger:
+      platform: numeric_state
+      entity_id: sensor.tesla_lastupdate
+      above: 300
+  action:
+      service: notify.html_notifier
+      data_template:
+        title: "Tesla Update Delay"
+        message: "Tesla battery has not updated in 5 minutes"
+
+- alias: 'Tesla Since 1hr'
+  trigger:
+      platform: numeric_state
+      entity_id: sensor.tesla_lastupdate
+      above: 3600
+  action:
+      service: notify.html_notifier
+      data_template:
+        title: "Tesla Update Delay"
+        message: "Tesla battery has not updated in 1 hour"
 
 - alias: 'PiZero Off'
   trigger:

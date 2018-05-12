@@ -1,8 +1,8 @@
   tts_say:
     sequence:
-      - condition: time
-        after: '08:00:00'
-        before: '21:00:00'
+      - condition: state
+        entity_id: input_boolean.jarvis_on
+        state: 'on'
       - service: mqtt.publish
         data_template:
           topic: 'jarvis/tts'

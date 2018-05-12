@@ -1,11 +1,11 @@
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 
 #
 #
 # Args:
 #
 
-class DoorLock(appapi.AppDaemon):
+class DoorLock(hass.Hass):
 
   def initialize(self):
      self.log("[AUTODOORLOCK] Starting Door Lock")
@@ -33,7 +33,7 @@ class DoorLock(appapi.AppDaemon):
     self.handle = None
 
 ################### LIGHTS ###########
-class OutsideLights(appapi.AppDaemon):
+class OutsideLights(hass.Hass):
 
   def initialize(self):
     self.run_at_sunrise(self.sunrise_cb)

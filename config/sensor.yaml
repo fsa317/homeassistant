@@ -101,10 +101,12 @@
         value_template: '{% if is_state("climate.fin_temps", "Defrosting") -%}1{%- else -%}0{%- endif %}'
       wine_lastupdate:
         entity_id: sensor.time
-        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.sensor.wine_room_humidity.last_changed))) | round (0)}}'
+        value_template: >
+           {%- set updates = [states.climate.wine_room_temp.last_updated,states.climate.fin_temps.last_updated,states.sensor.wine_room_humidity.last_updated] -%}
+           {{ ((as_timestamp(now())-as_timestamp(updates | max))) | round (0)}} 
       tesla_lastupdate:
         entity_id: sensor.time
-        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.sensor.home_usage_now.last_changed))) | round (0)}}'
+        value_template: '{{ ((as_timestamp(now())-as_timestamp(states.sensor.home_usage_now.last_updated))) | round (0)}}'
       frank_location_lastupdate:
         entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.device_tracker.frank_samsung.last_updated))/60) | round (0)}}'
