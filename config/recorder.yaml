@@ -39,3 +39,4 @@
      - sensor.wine_lastupdate
      - sensor.frank_location_lastupdate
      - sensor.tiffany_location_lastupdate
+     - sensor.tesla_lastupdate

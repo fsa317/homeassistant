@@ -28,10 +28,12 @@
       - switch.fireplace_switch
       - sensor.current_solar_power
       - sensor.wine_room_humidity
-      - sensor.disk_used_
+      - sensor.disk_use_percent_
       - sensor.speedtest_download
       - sensor.speedtest_upload
       - sensor.zwave_front_door_battery
+      - sensor.processor_use
+      - sensor.memory_free
       - binary_sensor.ring_front_door_motion
       - binary_sensor.ring_front_door_ding
       - device_tracker.frank_samsung

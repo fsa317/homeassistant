@@ -103,7 +103,7 @@
         entity_id: sensor.time
         value_template: >
            {%- set updates = [states.climate.wine_room_temp.last_updated,states.climate.fin_temps.last_updated,states.sensor.wine_room_humidity.last_updated] -%}
-           {{ ((as_timestamp(now())-as_timestamp(updates | max))) | round (0)}} 
+           {{ ((as_timestamp(now())-as_timestamp(updates | max))) | round (0)}}
       tesla_lastupdate:
         entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.sensor.home_usage_now.last_updated))) | round (0)}}'
