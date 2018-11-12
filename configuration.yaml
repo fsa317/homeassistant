@@ -126,7 +126,7 @@ input_number: !include config/input_number.yaml
 zwave: !include config/zwave.yaml
 weblink: !include config/weblink.yaml
 climate: !include config/climate.yaml
-amcrest: !include config/amcrest.yaml
+#amcrest: !include config/amcrest.yaml
 camera: !include config/camera.yaml
 recorder: !include config/recorder.yaml
 influxdb: !include config/influxdb.yaml

@@ -1,6 +1,6 @@
 log:
-  logfile: /home/ubuntu/appd-logs/appd.log
-  errorfile: /home/ubuntu/appd-logs/appd.err
+  logfile: /home/homeassistant/.homeassistant/appd-logs/appd.log
+  errorfile: /home/homeassistant/.homeassistant/appd-logs/appd.err
   logsize: 100000
   log_generations: 3
 appdaemon:
