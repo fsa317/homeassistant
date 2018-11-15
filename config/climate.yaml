@@ -1,5 +1,6 @@
   - platform: mqtt
     initial: 60
+    retain: true
     min_temp: 55
     max_temp: 65
     name: "Wine Room Temp"
@@ -14,6 +15,7 @@
     fan_modes:
   - platform: mqtt
     initial: 32
+    retain: true
     name: "Fin Temps"
     temperature_command_topic: "myhome/wine/setfinmintemp"
     temperature_state_topic: "ha/wine/finMinTemp"
