@@ -80,14 +80,19 @@
   - platform: template
     sensors:
       entrancemd_tripped:
+        entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.entrance_motion.last_changed))/60) | round (0)}}'
       familymd_tripped:
+        entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.family_motion.last_changed))/60) | round (0)}}'
       basementmd_tripped:
+        entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.basement_motion.last_changed))/60) | round (0)}}'
       frontdoor_tripped:
+        entity_id: sensor.time
         value_template: '{{ ((as_timestamp(now())-as_timestamp(states.binary_sensor.front_door.last_changed))/60) | round (0)}}'
       last_motion:
+        entity_id: sensor.time 
         friendly_name: 'Last Motion'
         value_template: >
           {%- set sensors = [states("sensor.basementmd_tripped") | int, states("sensor.entrancemd_tripped") | int, states("sensor.familymd_tripped") | int , states("sensor.frontdoor_tripped")| int] -%}

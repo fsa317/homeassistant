@@ -5,5 +5,5 @@
     payload_on: "1"
     payload_off: "0"
     optimistic: false
-#  - platform: tplink
-#    host: 192.168.1.38
+  - platform: tplink
+    host: 192.168.1.38
