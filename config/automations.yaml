@@ -28,12 +28,12 @@
   trigger:
       platform: numeric_state
       entity_id: sensor.tesla_lastupdate
-      above: 300
+      above: 900
   action:
       service: notify.html_notifier
       data_template:
         title: "Tesla Update Delay"
-        message: "Tesla battery has not updated in 5 minutes"
+        message: "Tesla battery has not updated in 15 minutes"
 
 - alias: 'Tesla Since 1hr'
   trigger:
