@@ -23,6 +23,28 @@
       data_template:
         title: "Wine Room Cooling"
         message: "Wine room has been cooling for {{ states.sensor.wine_cooling_since.state }} minutes."
+- alias: 'Cooling Since 30'
+  trigger:
+      platform: numeric_state
+      entity_id: sensor.wine_cooling_since
+      above: 2
+  action:
+    - service: notify.html_notifier
+      data_template:
+        title: "Wine Room Cooling"
+        message: "Wine room has been cooling for {{ states.sensor.wine_cooling_since.state }} minutes. Turning off."
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.fin_temps
+        temperature: 70
+        operation_mode: Heat
+    - delay: 2:00
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.fin_temps
+        temperature: 36
+        operation_mode: Heat
+
 
 - alias: 'Tesla Since'
   trigger:
