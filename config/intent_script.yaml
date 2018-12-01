@@ -11,6 +11,10 @@ TurnOnIntent:
           switch.toggle
         {%- elif 'living' in devicename.lower() -%}
           light.toggle
+        {%- elif 'master' in devicename.lower() -%}
+          switch.toggle
+        {%- elif 'bedroom' in devicename.lower() -%}
+          switch.toggle
         {%- elif 'christmas' in devicename.lower() -%}
           switch.toggle
         {%- else -%}
@@ -24,6 +28,10 @@ TurnOnIntent:
           light.leviton_vri061lx_multilevel_scene_switch_level
           {%- elif 'christmas' in devicename.lower() -%}
           switch.my_smart_plug
+          {%- elif 'master' in devicename.lower() -%}
+          switch.leviton_vrs151lz_binary_scene_switch_switch_3
+          {%- elif 'bedroom' in devicename.lower() -%}
+          switch.leviton_vrs151lz_binary_scene_switch_switch_3
           {%- endif -%}
 
 UnlockIntent:
